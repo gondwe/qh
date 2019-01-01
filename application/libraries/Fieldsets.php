@@ -17,9 +17,10 @@ class Fieldsets {
 		$sid = 1;
 		switch($this->table){
 			case "users" : 
-				$this->hide("password,salt,activation_code,forgotten_password_code,
-							created_on,last_login,ip_address,forgotten_password_time,remember_code");
-				$this->combo("user_type","select id, b from dataconf where a = 'usertype'");
+				$this->hide("password,salt,activation_code,forgotten_password_code,active,created_on,forgotten_password_selector,remember_selector,
+							created_on,last_login,ip_address,forgotten_password_time,remember_code,activation_selector");
+				// $this->combos("user_type","select id, b from dataconf where a = 'usertype'");
+				
 			break;
 			
 			case "settings":

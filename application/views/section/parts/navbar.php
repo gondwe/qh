@@ -1,11 +1,10 @@
-<?php $_SESSION["user_id"] || beefSecurity(); ?>
   <header class="main-header">
     <!-- Logo -->
-    <a href="<?=base_url('assets/index2.html" class="logo')?>">
+    <a href="<?=base_url('/')?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">QH</span>
+      <span class="logo-mini">Qh</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>Queen</b>teric</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -31,7 +30,7 @@
           <?php $this->load->view('section/parts/tasks')?>
           
           <!-- User Account: style can be found in dropdown.less -->
-            <?php $this->load->view('section/parts/profile')?>
+            <?php $this->load->view('section/parts/profile', ['data'=>$data])?>
           <!-- Control Sidebar Toggle Button -->
           <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

@@ -34,15 +34,17 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to your session</p>
-
-    <form action="../../index2.html" method="post">
+    <!-- <p class="login-box-msg">Sign in to your session</p> -->
+    <div id='alerts' class="m-0"><?=$message?></div>
+    <?php echo form_open("auth/login");?>
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <!-- <input type="email" class="form-control" placeholder="Email"> -->
+        <?php echo form_input($identity,null,["class"=>"form-control", "placeholder"=>" Username"]);?>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <!-- <input type="password" class="form-control" placeholder="Password"> -->
+        <?php echo form_input($password,null,["class"=>"form-control", "placeholder"=>" Password"]);?>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

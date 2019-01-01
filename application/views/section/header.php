@@ -1,39 +1,14 @@
+<?php $_SESSION["user_id"] || beefSecurity(); ?>
+<?php $data = $this->db->where('id',$this->session->user_id)->get('users')->row(); ?>
+
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Queenteric | HMS</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?=base_url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css')?>">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?=base_url('assets/bower_components/font-awesome/css/font-awesome.min.css')?>">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="<?=base_url('assets/bower_components/Ionicons/css/ionicons.min.css')?>">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="<?=base_url('assets/dist/css/AdminLTE.min.css')?>">
-  <link rel="stylesheet" href="<?=base_url('assets/dist/css/helpers.css')?>">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?=base_url('assets/dist/css/skins/_all-skins.min.css')?>">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-  <!-- Google Font -->
-  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
-</head>
+<head> <?php $this->load->view('section/parts/meta')?> </head>
 <body class="hold-transition skin-green-light sidebar-mini sidebar-collapse">
+
 <!-- Site wrapper -->
 <div class="wrapper">
-
-<?php $this->load->view('section/parts/navbar')?>
+<?php $this->load->view('section/parts/navbar',['data'=>$data])?>
 
   <!-- =============================================== -->
 
@@ -47,7 +22,7 @@
           <img src="<?=base_url('assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image')?>">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><?=ucwords($data->first_name.' '.$data->last_name)?></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -66,98 +41,98 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li class="treeview">
-          <a href="#">
+          <a href="<?=base_url('/')?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
-          <ul class="treeview-menu">
-            <li><a href="<?=base_url('assets/index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></l')?>i>
-            <li><a href="<?=base_url('assets/index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></l')?>i>
-          </ul>
+          <!-- <ul class="treeview-menu">
+            <li><a href="<?=base_url('assets/index.html')?>i>
+            <li><a href="<?=base_url('assets/index2.html')?>i>
+          </ul> -->
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="<?=base_url('patient/admission')?>">
             <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
+            <span>Admission</span>
             <span class="pull-right-container">
               <span class="label label-primary pull-right">4</span>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="../layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+            <li><a href="<?=base_url('patient/admission/list')?>"><i class="fa fa-circle-o"></i> Admission List</a></li>
+            <li><a href="<?=base_url('patient/discharged')?>"><i class="fa fa-circle-o"></i> Discharged</a></li>
+            <!-- <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li> -->
+            <!-- <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> -->
           </ul>
         </li>
-        <li>
+        <!-- <li>
           <a href="../widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
+            <i class="fa fa-th"></i> <span>Donate</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
+              <small class="label pull-right bg-green">New</small>
             </span>
           </a>
-        </li>
+        </li> -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
-            <span>Charts</span>
+            <span>Appointments</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-            <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-            <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-            <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+            <li><a href="<?=base_url('booking/consultation')?>"><i class="fa fa-circle-o"></i> Consultation</a></li>
+            <li><a href="<?=base_url('booking/theatre')?>"><i class="fa fa-circle-o"></i> Theatre</a></li>
+            <!-- <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+            <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li> -->
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
+            <span>Pharmacy</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="../UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+            <li><a href="<?=base_url('pharmacy/products')?>"><i class="fa fa-circle-o"></i> Products</a></li>
+            <li><a href="<?=base_url('pharmacy/reorderlist')?>"><i class="fa fa-circle-o"></i> ReOrder List</a></li>
+            <!-- <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
             <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
             <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+            <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li> -->
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-edit"></i> <span>Forms</span>
+            <i class="fa fa-edit"></i> <span>Doctor</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="../forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="../forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+            <li><a href="<?=base_url('doctor/diagnosis')?>"><i class="fa fa-circle-o"></i> Diagnosis</a></li>
+            <li><a href="<?=base_url('doctor/prescription')?>"><i class="fa fa-circle-o"></i> Prescription</a></li>
+            <li><a href="<?=base_url('doctor/referal')?>"><i class="fa fa-circle-o"></i> Referal</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-table"></i> <span>Tables</span>
+            <i class="fa fa-circle-o"></i> <span>Laboratory</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="../tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-            <li><a href="../tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+            <li><a href="<?=base_url('lab/tests')?>"><i class="fa fa-circle-o"></i> Tests</a></li>
+            <li><a href="<?=base_url('lab/results')?>"><i class="fa fa-circle-o"></i> Results</a></li>
           </ul>
         </li>
-        <li>
+        <!-- <li>
           <a href="../calendar.html">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
             <span class="pull-right-container">
@@ -165,8 +140,8 @@
               <small class="label pull-right bg-blue">17</small>
             </span>
           </a>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a href="../mailbox/mailbox.html">
             <i class="fa fa-envelope"></i> <span>Mailbox</span>
             <span class="pull-right-container">
@@ -175,73 +150,79 @@
               <small class="label pull-right bg-red">5</small>
             </span>
           </a>
-        </li>
+        </li> -->
         <li class="treeview active">
           <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
+            <i class="fa fa-medkit"></i> <span>Facility</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+            <li><a href="<?=base_url('facility/rooms')?>"><i class="fa fa-circle-o"></i> Rooms</a></li>
+            <li><a href="<?=base_url('facility/beds')?>"><i class="fa fa-circle-o"></i> Beds</a></li>
+            <!-- <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li> -->
+            <!-- <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
             <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
             <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
             <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
             <li class="active"><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+            <li><a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li> -->
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-share"></i> <span>Multilevel</span>
+            <i class="fa fa-dollar text-green"><span class="fa fa-dollar"></span></i> <span>Accounts</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Invoices</a></li>
             <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Level One
+              <a href="#"><i class="fa fa-circle-o"></i> Cashier
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                <li><a href="#"><i class="fa fa-circle-o"></i> POS</a></li>
                 <li class="treeview">
-                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                  <a href="#"><i class="fa fa-circle-o"></i> Receipts
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Reprint</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Void</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Patient Account</a></li>
           </ul>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        <li class="header">LABELS</li>
+        <!-- <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li> -->
+        <!-- <li class="header">LABELS</li>
         <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li> -->
       </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
 
   <!-- =============================================== -->
+  
+  <!-- jQuery 3 -->
+  <script src="<?=base_url('assets/bower_components/jquery/dist/jquery.min.js')?>"></script>
+  <!-- Select 2 -->
+<script src="<?=base_url('assets/bower_components/select2/dist/js/select2.full.js')?>"></script>
+
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="padding:5px">
+  <div class="content-wrapper" style="padding:15px;">
   <?php //$this->load->view('section/parts/breadcrumbs')?>
   
 <!-- ./wrapper -->

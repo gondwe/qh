@@ -7,7 +7,7 @@ function beefSecurity(){ redirect("auth/logout"); }function pf($i){ echo "<pre>"
 
 function this(){ return $CI = & get_instance(); }
 
-function rxx($i){ return ucwords(strtolower(str_replace("_","",$i))); }
+function rxx($i){ return ucwords(strtolower(str_replace("_"," ",$i))); }
 
 function process($sql){ $db = this()->db; $db->query($sql); }  
 
@@ -129,6 +129,36 @@ $('#exampleModalDel').on('show.bs.modal', function (event) {
 
     <?php
 }
+
+function printButton($div, $url, $view){
+  echo '<p  data-div="'.$div.'" data-url="'.$url.'" data-view="'.$view.'" class="printer hide-print pull-right btn btn-primary btn-sm" style="margin:3px">PRINT</p>';
+}
+
+function table(Array $tbody, $class=''){
+  openDataTables();
+  $th = array_shift($tbody);
+    ?>
+    <table class="<?=$class?>" style='width:98%; margin:5px  '>
+      <thead style="background:#dcdcdc">
+          <tr>
+            <?php foreach ($th as $title):
+                  echo "<th style='padding-left:3px'>{$title}</th>";
+            endforeach;?>
+          </tr>
+      </thead>
+      <tbody>
+          <?php foreach ($tbody as $tr):
+                  echo "<tr>";
+              foreach ($tr as $td) {
+                  echo "<td style='padding-left:5px'>{$td}</td>";
+              }
+              echo "</tr>";
+          endforeach;?>
+      </tbody>
+    </table>
+<?php closeDataTables(0); }
+
+
 
 function examDashboard(){
   echo '<a class="pull-right btn-sm btn btn-secondary" href="'.base_url('exams').'" role="button"><i class="fa fa-home"></i> EXAMS DASHBOARD</a>';

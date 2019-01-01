@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'home';
 $route['about'] = 'home/about';
+$route['test'] = 'systems/tests';
 // $route['classes'] = 'config/classes';
 // $route['institution'] = 'config/institution';
 
