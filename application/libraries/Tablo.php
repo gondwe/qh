@@ -22,6 +22,8 @@ class Tablo extends fieldsets{
 	private $db;
 	
 	public $sql;
+	// public $print = TRUE;
+	public $newButton = FALSE;
 	public $sqlstring;
 	public $values = [];
 	public $pictures = [];
@@ -37,7 +39,8 @@ class Tablo extends fieldsets{
 	public $mask=[];
 	public $hidden=[];
 	
-	
+	public $limit=25;
+
 	private $fieldtypes;
 	
 	private $reserved = ["id","date","created_at","updated_at"];
@@ -56,7 +59,7 @@ class Tablo extends fieldsets{
 			$this->query($id);
 			break;
 		}
-		$this->fieldtypes = ["int"=>"number","tinyint"=>"number","3"=>"number","float"=>"number","timestamp"=>"date","7"=>"date","252"=>"textarea","blob"=>"textarea","varchar"=>"text","253"=>"text",];
+		$this->fieldtypes = ["int"=>"number","246"=>"number","decimal"=>"number","tinyint"=>"number","3"=>"number","float"=>"number","timestamp"=>"date","7"=>"date","252"=>"textarea","blob"=>"textarea","varchar"=>"text","253"=>"text",];
 		
 	}
 	
@@ -78,19 +81,22 @@ class Tablo extends fieldsets{
 	function view_hidden($i){ $this->view_hidden = explode(",",$i); }
 	
 	/* display a table */
-	public function table($display_links = 1){
+	public function table($display_links = null){
 		$this->init();
 		$cm = null;
 			
 		if( is_string( $this->sqlstring)){
 			$this->data = $this->get($this->sqlstring);
 		}
-		
+		$display_links = is_null($display_links)? (count($this->data)>15? 2 : 0) : $display_links;
+		// pf($display_links);
 		$this->tableLinks($display_links);
 
 		openDataTables();
 		// pf($this->sqlstring);
-		printButton('example','tabloPrinter','tablo');
+		if($this->printable) printButton('example','tabloPrinter','tablo');
+
+		if($this->newButton) $this->newButton('example','tabloPrinter','tablo');
 		
 		echo'<table id="example" data-name="{$this->table}" class="display striped" style="width:100%;">';
 		
@@ -140,10 +146,17 @@ class Tablo extends fieldsets{
 	</div>
 	</div>';
 
-	closeDataTables($display_links);
+	closeDataTables($display_links, $this->limit);
 	dataTableModals();
 	}
 
+
+	public function limit($param)
+	{
+	
+		 $this->limit = $param; 
+	
+	}
 
 	public function tableLinks($display_links)
 	{
@@ -174,7 +187,7 @@ class Tablo extends fieldsets{
 				if($fg !== "scode") { $fh = isset($this->aliases[$fg]) ? $this->aliases[$fg] : $ff; echo "<th class='px-2'>".strtoupper(rxx($fh))."</th>"; }
 			}
 		endforeach;
-		if(!empty($this->buttons)){$span = count($this->buttons); $actions = $span>1? "s" : null; echo "<th colspan='$span'>Action$actions</th>";}
+		if(!empty($this->buttons)){$span = count($this->buttons); $actions = $span>1? "s" : null; echo "<th colspan='$span'><i class='fa fa-wrench text-success'></i></th>";}
 		echo $this->edit ? "<th><i data-toggle='tooltip' title='Edit' class='fa fa-edit text-light text-lg'></i></th>" : null;
 		echo $this->delete ? "<th><i  data-toggle='tooltip' title='Delete' class='fa fa-minus-square text-light'></i></th>" : null;
 		echo "</tr>";
@@ -187,21 +200,29 @@ class Tablo extends fieldsets{
 	
 		if(!empty($this->buttons)){
 			foreach($this->buttons as $b=>$t){
-				echo "<td><a class='btn  btn-primary btn-outline btn-rounded btn-xs' href='".base_url($t."/".$dd['id'])."' >$b</a></td>";
+				echo "<td><a class='btn  btn-outline-success btn-rounded btn-xs btn-sm' href='".base_url($t."/".$dd['id'])."' >$b</a></td>";
 			}
 		} 
 	
 	}
 
+	
+
+	protected function newButton()
+	{
+		echo '<div style="" class="inline-row">
+		<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#newModal" data-title="'.ucfirst($this->table).'" "><i class="fa fa-plus"></i>  New</button>
+		</div>';
+	}
 
 	protected function tableActions($dd)
 	{
 		echo $this->edit ? '<td style="width:2px;">
-		<button type="button" class="btn btn-xs btn-info" data-toggle="modal" data-target="#exampleModal" data-title="'.ucfirst($this->table).'" data-id="'.$dd['id'].'"><i class="fa fa-edit"></i></button>
+		<button type="button" class="btn btn-xs btn-sm btn-info" data-toggle="modal" data-target="#exampleModal" data-title="'.ucfirst($this->table).'" data-id="'.$dd['id'].'"><i class="fa fa-edit"></i></button>
 		</td>' : null;
 		
 		echo $this->delete ?  '<td style="width:2px;">
-		<button type="button" class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModalDel" data-title="'.ucfirst($this->table).'" data-id="'.$dd['id'].'"><i class="fa fa-trash "></i></button>
+		<button type="button" class="btn btn-xs btn-sm btn-outline-primary" data-toggle="modal" data-target="#exampleModalDel" data-title="'.ucfirst($this->table).'" data-id="'.$dd['id'].'"><i class="fa fa-trash "></i></button>
 		</td>' : null;
 		echo "</tr>";
 		
@@ -235,7 +256,8 @@ class Tablo extends fieldsets{
 	/* call the submit button */
 	function submitbtn($name=null){
 		echo '<div class="col-lg-'.$this->lg.' col-md-'.$this->md.' col-sm-'.$this->sm.' col-xs-12 pull-left ">';
-		echo "<p><input type='submit' value='SAVE' class='form-control text-light btn btn-primary'></p>";
+		echo "<div class='form-group'><label class='m-2 text-light'>+</label>
+		<input type='submit' value='SAVE' class='form-control text-light btn btn-primary'></div>";
 		echo "</div>";
 	}
 
@@ -265,12 +287,7 @@ class Tablo extends fieldsets{
 	}
 	
 
-	public function print()
-	{
-	
-		 $this->printable = true; 
-	
-	}
+	public function print(){ $this->printable = true; }
 
 	function fieldset($d){
 		$value_set = isset($this->values[$d->name])? $this->values[$d->name] : null;
@@ -347,7 +364,7 @@ class Tablo extends fieldsets{
 				$label = isset($this->aliases[$n]) ? $this->aliases[$n] : $n;
 				echo "
 				<div class='input-group-prepend'>
-					<div class='input-group-text'>".strtoupper(rxx($label))."</div>
+					<div class='p-2'>".strtoupper(rxx($label))."</div>
 				</div>
 				";
 			} 

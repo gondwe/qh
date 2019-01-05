@@ -100,11 +100,8 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?=base_url('pharmacy/products')?>"><i class="fa fa-circle-o"></i> Products</a></li>
-            <li><a href="<?=base_url('pharmacy/reorderlist')?>"><i class="fa fa-circle-o"></i> ReOrder List</a></li>
-            <!-- <li><a href="../UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="../UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="../UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="../UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li> -->
+            <li><a href="<?=base_url('pharmacy/products/reorderlist')?>"><i class="fa fa-circle-o"></i> ReOrder List</a></li>
+            
           </ul>
         </li>
         <li class="treeview">
@@ -153,7 +150,7 @@
         </li> -->
         <li class="treeview active">
           <a href="#">
-            <i class="fa fa-medkit"></i> <span>Facility</span>
+            <i class="fa fa-medkit text-red"></i> <span>Facility</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -172,7 +169,7 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dollar text-green"><span class="fa fa-dollar"></span></i> <span>Accounts</span>
+            <i class="fa fa-bank"></span></i> <span>Accounts</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

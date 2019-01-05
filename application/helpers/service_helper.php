@@ -25,26 +25,19 @@ function ajaxload($url,$mod)
     ";
 }
 
-function subjectList($subs)
-{
-  foreach($subs as $s){ $t[$s->code] = $s->name; }
-  
-  return $t;
-}
-
 
 function openDataTables(){
     echo '<link rel="stylesheet" href="'.base_url('assets/css/jquery-ui.css').'">';
     echo '<link rel="stylesheet" href="'.base_url('assets/css/dataTables.jqueryui.min.css').'">';
 }
 
-function closeDataTables($disp){
+function closeDataTables($disp, $limit=25){
     ?>
         <script src="<?=base_url('assets/js/jquery.dataTables.min.js')?>"></script>
         <script>
         var disp = "<?=$disp?>"
         $(document).ready(function() { $("#example").DataTable({ 
-            pageLength:25,
+            pageLength:<?=$limit?>,
             searching:disp == 0 ? false:true,
             paging:disp == 0 ? false:true,
             ordering:disp == 0 ? false:true,
@@ -78,6 +71,28 @@ function dataTableModals()
   </div>
 </div>
 
+
+
+   <!-- new modal  -->
+   <div class="modal fade bd-example-modal-lg" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Send message</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
    <!-- deleting modal  -->
 <div class="modal fade" id="exampleModalDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -115,6 +130,19 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     })
 })
 
+
+$('#newModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id') // Extract info from data-* attributes
+  var title = button.data('title') // Extract info from data-* attributes
+  var modal = $(this)
+  modal.find('.modal-title').text('Edit ' + title)
+    $.get("<?=base_url('crud/ajaxNew/')?>" + title.toLowerCase() + '/' + id, function(dat){
+        modal.find('.modal-body').html(dat)
+    })
+})
+
+
 $('#exampleModalDel').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var id = button.data('id') // Extract info from data-* attributes
@@ -130,9 +158,17 @@ $('#exampleModalDel').on('show.bs.modal', function (event) {
     <?php
 }
 
-function printButton($div, $url, $view){
-  echo '<p  data-div="'.$div.'" data-url="'.$url.'" data-view="'.$view.'" class="printer hide-print pull-right btn btn-primary btn-sm" style="margin:3px">PRINT</p>';
+
+
+function linkTo($disp,$url){
+  echo '<a class="btn btn-success btn-sm m-1" href="'.base_url($url).'" role="button">'.$disp.'</a>';
 }
+
+
+function printButton($div, $url, $view){
+  echo '<p  data-div="'.$div.'" data-url="'.$url.'" data-view="'.$view.'" class="printer hide-print pull-right btn btn-info btn-sm" style="margin:3px">PRINT</p>';
+}
+
 
 function table(Array $tbody, $class=''){
   openDataTables();
@@ -159,10 +195,6 @@ function table(Array $tbody, $class=''){
 <?php closeDataTables(0); }
 
 
-
-function examDashboard(){
-  echo '<a class="pull-right btn-sm btn btn-secondary" href="'.base_url('exams').'" role="button"><i class="fa fa-home"></i> EXAMS DASHBOARD</a>';
-}
 
 function ucase($i){ return strtoupper($i); }
 
