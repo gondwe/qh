@@ -1,13 +1,16 @@
 <?php 
 
 
-class Fieldsets {
+
+class Fieldsets  {
 
 	private $thisb;
 	public $orient;
+	protected $segment;
+	
 	
 	function __construct(){
-		$this->db = db();
+		$this->segment = this()->uri->segments ?? null;
 	}
 
 	
@@ -45,8 +48,35 @@ class Fieldsets {
 				$this->combos("house", "select id, name from dorms");
 				$this->order_by("created_at", "desc");
 			break;
+			
+			case "vdata" : 
+			
+			switch($this->aliased){
+				
+				case "ward_categories": 
+				$this->values("a",'wardcat');
+				break;
+				
+				case "ward_names": 
+				// $this->hidden("a",'wardname');
+				break;
+				
+				default : 
+				pf("Alias NOT Assigned");
+				break;
+				
+			}
+			
+			break;
+
+			case "diagnosis" : 
+				// $this->where('pid = '.$info->id);
+				// $this->hidden('pid', $info->id);
+				// $this->combos('doc_id','select id, concat(first_name," ",last_name) from users');
+				// $this->combos('symptom','select id, names from symptoms');
+			break;
 		}
 		
 	}
-
+	
 }

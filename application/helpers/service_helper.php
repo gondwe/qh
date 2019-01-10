@@ -47,117 +47,7 @@ function closeDataTables($disp, $limit=25){
     <?php
 }
 
-function dataTableModals()
-{
-    ?>
-   <!-- editing modal  -->
-<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Send message</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-   <!-- new modal  -->
-   <div class="modal fade bd-example-modal-lg" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Send message</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-   <!-- deleting modal  -->
-<div class="modal fade" id="exampleModalDel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete Record</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body d-row">
-        <button  id="yes" class="btn btn-primary col-md-5" data-dismiss="modal">Ok</button>
-        <button  class="btn btn-success col-md-5 pull-right" data-dismiss="modal">Cancel</button>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-primary">Send message</button> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-<script>
-$('#exampleModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var id = button.data('id') // Extract info from data-* attributes
-  var title = button.data('title') // Extract info from data-* attributes
-  var modal = $(this)
-  modal.find('.modal-title').text('Edit ' + title)
-    $.get("<?=base_url('crud/ajaxEdit/')?>" + title.toLowerCase() + '/' + id, function(dat){
-        modal.find('.modal-body').html(dat)
-    })
-})
-
-
-$('#newModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var id = button.data('id') // Extract info from data-* attributes
-  var title = button.data('title') // Extract info from data-* attributes
-  var modal = $(this)
-  modal.find('.modal-title').text('Edit ' + title)
-    $.get("<?=base_url('crud/ajaxNew/')?>" + title.toLowerCase() + '/' + id, function(dat){
-        modal.find('.modal-body').html(dat)
-    })
-})
-
-
-$('#exampleModalDel').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var id = button.data('id') // Extract info from data-* attributes
-  var table = button.data('title') // Extract info from data-* attributes
-  var modal = $(this)
-    modal.find('#yes').click(function(){
-        $("#row" + id ).hide();
-        $.post("<?=base_url('crud/ajaxDel/')?>" + table.toLowerCase() + '/' + id);
-    });
-  });
-</script>
-
-    <?php
-}
-
+function dataTableModals(){}
 
 
 function linkTo($disp,$url){
@@ -260,4 +150,35 @@ function save_pic($table, $fldname, $type=1){
 function image($url,$tbl=null){
     $tbl = is_null($tbl)? null : $tbl."/";
     echo base_url("assets/img/$tbl".$url);
+}
+
+function publicProps($obj){
+
+  $props = [];
+  $reflection = new ReflectionObject($obj);
+  $allProps = $reflection->getProperties(ReflectionProperty::IS_PUBLIC);
+    foreach($allProps as $p){
+      $props[] = $p->getName();
+    }
+  
+  return $props;
+
+}
+
+
+function dashCard($title,$url,$count='-',$icon='user',$bg='aqua'){
+  ?>
+  <div class="col-lg-3 col-xs-6">
+    <div class="small-box bg-<?=$bg?>">
+        <div class="inner">
+            <h3 style="opacity:.20;" ><?=$count?></h3>
+            <a href="<?=base_url($url)?>" style="color: white">  <p> <?=$title?></p></a>
+        </div>
+        <div class="icon">
+            <i class="fa fa-<?=$icon?>"></i>
+        </div>
+        <a href="<?=base_url($url)?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+  <?php
 }

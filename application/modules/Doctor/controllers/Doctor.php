@@ -7,8 +7,11 @@ class Doctor extends MX_Controller {
     {
      
         $this->load->model('pharmacy/Product');
+
+        $this->load->model('Patient');
      
     }
+
 
     public function products($action='dashboard')
     {
@@ -27,10 +30,23 @@ class Doctor extends MX_Controller {
 
     public function diagnosis($param=null)
     {
+
+        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
     
         $location = is_null($param)? "search" : "diagnosis";
 
-        serve('patient/'.$location) ;
+        serve('patient/'.$location, $data) ;
+    
+    }
+
+    public function prescription($param=null)
+    {
+
+        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
+    
+        $location = is_null($param)? "search" : "prescription";
+
+        serve('patient/'.$location, $data) ;
     
     }
 

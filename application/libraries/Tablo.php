@@ -12,7 +12,7 @@ class Tablo extends fieldsets{
 	protected $fields;
 	protected $fieldnames;
 	protected $rowcount;
-	protected $combos;
+	public $combos;
 	protected $view_hidden;
 	protected $cases;
 	protected $order_by = null;
@@ -38,12 +38,12 @@ class Tablo extends fieldsets{
 	public $valuetype;
 	public $mask=[];
 	public $hidden=[];
-	
 	public $limit=25;
-
-	private $fieldtypes;
+	public $aliased;
 	
-	private $reserved = ["id","date","created_at","updated_at"];
+	
+	private $fieldtypes;
+	public $reserved = ["id","date","created_at","updated_at"];
 	// private $reserved = [];
 	
 	
@@ -52,6 +52,7 @@ class Tablo extends fieldsets{
 	
 	function init($id=null){
 		$this->fsets();
+		
 		$i = gettype($this->table);
 		switch($i){
 			case "string" : 
@@ -66,7 +67,21 @@ class Tablo extends fieldsets{
 	function query($id=null){ if(is_null($id)){ $this->data = $this->get($this->sql);  }else{ $this->data = $this->get($this->sql." where id = '$id'"); } }
 	function formgrid($lg="4",$md="6",$sm="12"){ $this->lg = $lg; $this->md = $md; $this->sm = $sm; }
 	
-
+public function tabloprops()
+{
+	// $_SESSION['tabloprops'] = get_class_vars(self::class);
+	$thisObj = $this;
+	// pf($thisObj);
+	unset($thisObj->db);
+	// foreach ($thisObj as $key => $value) {
+	// 	if($value !== '' && !is_null($value) ) $obj[$key] = $value;
+	// }
+	$tbl = "$this->table";
+	// pf($tbl);
+	$_SESSION[$tbl] = $thisObj;
+	// pf($this->aliased);
+	// pf($_SESSION['tabloprops']);
+}
 	public function __toString() {
 		return "{$this}";
 	}
@@ -84,10 +99,13 @@ class Tablo extends fieldsets{
 	public function table($display_links = null){
 		$this->init();
 		$cm = null;
+		
+		
 			
 		if( is_string( $this->sqlstring)){
 			$this->data = $this->get($this->sqlstring);
 		}
+
 		$display_links = is_null($display_links)? (count($this->data)>15? 2 : 0) : $display_links;
 		// pf($display_links);
 		$this->tableLinks($display_links);
@@ -208,7 +226,7 @@ class Tablo extends fieldsets{
 
 	
 
-	protected function newButton()
+	public function newButton()
 	{
 		echo '<div style="" class="inline-row">
 		<button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#newModal" data-title="'.ucfirst($this->table).'" "><i class="fa fa-plus"></i>  New</button>
@@ -245,6 +263,8 @@ class Tablo extends fieldsets{
 			/* call form fields */
 			$this->form_fields();
 			/* add hidden fields */
+
+			// pf($this->reserved);
 			foreach($this->hidden as $k=>$h){ echo "<input type='hidden' name='$k' value='".$h."'>"; }
 			/* insert table name into form */
 			echo "<input type='hidden' name='tbl_name' value='".$this->table."'>";
@@ -256,7 +276,7 @@ class Tablo extends fieldsets{
 	/* call the submit button */
 	function submitbtn($name=null){
 		echo '<div class="col-lg-'.$this->lg.' col-md-'.$this->md.' col-sm-'.$this->sm.' col-xs-12 pull-left ">';
-		echo "<div class='form-group'><label class='m-2 text-light'>+</label>
+		echo "<div class='form-group'><label class=' text-light'></label>
 		<input type='submit' value='SAVE' class='form-control text-light btn btn-primary'></div>";
 		echo "</div>";
 	}
@@ -308,6 +328,7 @@ class Tablo extends fieldsets{
 	/* filter out reserved fields */
 	function reserve_filter($d,$v){
 		global $user;
+		// pf($this->reserved);
 		$name = strtolower($d->name);
 		if(!in_array($name,$this->reserved)){
 			if(isset( $this->combos[$name])){
@@ -360,6 +381,7 @@ class Tablo extends fieldsets{
 	function label($n){ 
 		$n = strtolower($n);
 		if(!in_array($n,$this->reserved)){
+			// pf($this->fieldnames);
 			if( $n !== "scode" && $n !== "sid" ){
 				$label = isset($this->aliases[$n]) ? $this->aliases[$n] : $n;
 				echo "
@@ -378,10 +400,12 @@ class Tablo extends fieldsets{
 		foreach($a as $b){
 			$this->reserved[] = trim($b);
 		}
+		
 	}
 		
 	
 	
+
 	protected function get($i){ 
 		$l =[];
 		$db = this()->db;

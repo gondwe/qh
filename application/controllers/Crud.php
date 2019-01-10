@@ -20,14 +20,44 @@ class Crud extends MX_Controller {
     public function ajaxNew($table)
     {
         $d = new tablo($table);
+        // $d->sqlstring = "select id,b names,c price from vdata where a = 'wardcat'";
         $d->formgrid(6,12,12);
+        if(isset($_SESSION[$table])){
+            // pf($_SESSION[$table]);
+            
+            /* find public props */
+            $public = publicProps($d);
+            // pf($public);
+            foreach($_SESSION[$table] as $k=>$prop){
+                if(in_array($k,$public)){
+                    $d->$k = $prop;
+                }
+            }
+
+
+        }
         $d->newform();
+        // $d->table();
     }
 
 
     public function ajaxEdit($table,$id)
     {
         $d = new tablo($table);
+        if(isset($_SESSION[$table])){
+            // pf($_SESSION[$table]);
+            
+            /* find public props */
+            $public = publicProps($d);
+            // pf($public);
+            foreach($_SESSION[$table] as $k=>$prop){
+                if(in_array($k,$public)){
+                    $d->$k = $prop;
+                }
+            }
+
+
+        }
         $d->edit($id);
     }
 

@@ -18,8 +18,6 @@ class Systems extends MX_Controller {
     {
         $field = array_shift($where);
 
-        // pf($where);
-
         echo json_encode($this->System->combo($table,$field,$where));
     }
 
@@ -51,6 +49,11 @@ class Systems extends MX_Controller {
 
         }
     
+    }
+
+    public function data()
+    {
+        serve('datalist');
     }
 
 }
