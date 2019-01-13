@@ -1,21 +1,23 @@
 <?php 
 defined("BASEPATH") || exit('No Way Through');
 
-
+/* 
+    *
+    *   author:gondwe
+    *
+     */
 
 class Systems extends MX_Controller {
 
 
-    public function __construct()
-    {
-        
-        $this->load->model('System');
-    }
-
-
+    public function __construct() { $this->load->model('System'); }
 
     public function combo($table, ...$where)
     {
+        /* deal with special cases */
+        if($table == 'uid') { echo json_encode($this->System->qList()); return; }
+
+        /* general cases */
         $field = array_shift($where);
 
         echo json_encode($this->System->combo($table,$field,$where));
@@ -51,9 +53,6 @@ class Systems extends MX_Controller {
     
     }
 
-    public function data()
-    {
-        serve('datalist');
-    }
+    public function data(){ serve('datalist'); }
 
 }

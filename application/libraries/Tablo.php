@@ -197,15 +197,15 @@ public function tabloprops()
 	public function tableThead()
 	{
 	
-		echo "<thead class='bg-light'>";
-		echo "<tr id='tablohead' class='text-dark border-top'>";
-		echo "<th  style='border-right:1px solid #ddd;'>SNO</th>";
+		echo "<thead >";
+		echo "<tr id='tablohead' class='text-dark'>";
+		echo "<th >SNO</th>";
 		foreach($this->fieldnames as $ff):
 			if(!in_array($ff,$this->reserved)){ $fg = strtolower($ff);
 				if($fg !== "scode") { $fh = isset($this->aliases[$fg]) ? $this->aliases[$fg] : $ff; echo "<th class='px-2'>".strtoupper(rxx($fh))."</th>"; }
 			}
 		endforeach;
-		if(!empty($this->buttons)){$span = count($this->buttons); $actions = $span>1? "s" : null; echo "<th colspan='$span'><i class='fa fa-wrench text-success'></i></th>";}
+		if(!empty($this->buttons)){$span = count($this->buttons); $actions = $span>1? "s" : null; for($x = 0; $x<$span; $x++){ echo "<th></th>"; } }
 		echo $this->edit ? "<th><i data-toggle='tooltip' title='Edit' class='fa fa-edit text-light text-lg'></i></th>" : null;
 		echo $this->delete ? "<th><i  data-toggle='tooltip' title='Delete' class='fa fa-minus-square text-light'></i></th>" : null;
 		echo "</tr>";
@@ -386,7 +386,7 @@ public function tabloprops()
 				$label = isset($this->aliases[$n]) ? $this->aliases[$n] : $n;
 				echo "
 				<div class='input-group-prepend'>
-					<div class='p-2'>".strtoupper(rxx($label))."</div>
+					<div >".strtoupper(rxx($label))."</div>
 				</div>
 				";
 			} 

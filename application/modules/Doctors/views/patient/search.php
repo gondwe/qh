@@ -14,6 +14,6 @@
 
 <script>
     $('[name=patients]').change(function(){
-        window.location = '<?=base_url("doctor/{$section}/")?>' + this.value;
+        window.location = '<?=base_url("doctors/{$section}/")?>' + this.value;
     })
 </script>

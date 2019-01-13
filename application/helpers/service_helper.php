@@ -9,7 +9,23 @@ function this(){ return $CI = & get_instance(); }
 
 function rxx($i){ return ucwords(strtolower(str_replace("_"," ",$i))); }
 
-function process($sql){ $db = this()->db; $db->query($sql); }  
+function get($sql){
+    $raw = this()->db->query($sql)->result();
+    
+    $res = current($raw);
+    $fields =  array_keys( (array) $res);
+    
+    if(count($fields) == 2){
+        $first = current($fields);
+        $last = end($fields);
+        return (Object) array_combine(array_column($raw,$first),array_column($raw,$last));
+    }
+    
+    return $raw;
+    
+}
+
+function process($sql){ $db = this()->db; return $db->query($sql);  }  
 
 function ajaxload($url,$mod)
 {
@@ -146,6 +162,31 @@ function save_pic($table, $fldname, $type=1){
     
 }
 
+function rx($i){
+    return ucwords(strtolower($i));
+}
+
+function swalify($msg,$action){
+    $_SESSION['swal'] = [$msg,$action];
+}
+
+
+function swal($msg, $action){
+    // <script src="/assets/js/jquery-3.3.1.min.js"></script>
+    echo "
+    <link rel='stylesheet' href='".base_url('assets/css/sweetalert.css')."'>
+    <script src='".base_url('assets/js/jquery-3.3.1.min.js')."'></script>
+    <script>$(document).ready(function(){ swal('".$action."', '".$msg."', '".$action."' ); }) </script> 
+    <script src='".base_url('assets/js/sweetalert.js')."'></script>
+    
+    
+    ";
+}
+
+
+function df($i){
+    return date_format(new DateTime($i),"dS M Y");
+}
 
 function image($url,$tbl=null){
     $tbl = is_null($tbl)? null : $tbl."/";

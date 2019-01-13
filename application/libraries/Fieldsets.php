@@ -62,18 +62,18 @@ class Fieldsets  {
 				break;
 				
 				default : 
-				pf("Alias NOT Assigned");
+				// pf("Alias NOT Assigned");
 				break;
 				
 			}
 			
 			break;
 
-			case "diagnosis" : 
-				// $this->where('pid = '.$info->id);
-				// $this->hidden('pid', $info->id);
-				// $this->combos('doc_id','select id, concat(first_name," ",last_name) from users');
-				// $this->combos('symptom','select id, names from symptoms');
+			case "patients" : 
+				$this->combos('sex','select id, c from vdata where a ="gender"');
+				$this->combos('category','select id, b from vdata where a ="patcat"');
+				$this->ucase("names");
+				
 			break;
 		}
 		

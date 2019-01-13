@@ -64,6 +64,9 @@ class Crud extends MX_Controller {
     public function ajaxDel($table,$id)
     {
         this()->db->delete($table, ['id'=>$id]);
+
+        swal("Delete successful","info");
+
     }
 
 
@@ -83,7 +86,7 @@ class Crud extends MX_Controller {
         
         if($id = $this->insertrecord($table)){
             // datalog("New Record Created - $t");
-            // success("Data Entry Successful");
+            swalify("Save Successful",'success');
         }
 
         // misc functions 
@@ -109,7 +112,7 @@ class Crud extends MX_Controller {
     public function save($t,$ref = null){
         // pf($this->uri);
         $ref = is_null($ref) ? $_SERVER["HTTP_REFERER"] : $ref;
-        pf($ref);
+        // pf($ref);
         $table = $t;
         // exit();
         if(!empty($_POST)){
@@ -118,7 +121,11 @@ class Crud extends MX_Controller {
             $fields = implode(", ",$fields);
             $sql = "update $table set $fields where id = '$id'";
             savefiles($table, $id);
-            if(process($sql)){ datalog("Update of Record $id on $t"); success("Save Successful"); }
+            if(process($sql)){ 
+                // datalog("Update of Record $id on $t"); success("Save Successful"); 
+                unset($_SESSION[$table]);
+                swalify("Record Saved Successfully",'success');
+            }
             redirect($ref);
         }
     }
@@ -140,7 +147,13 @@ class Crud extends MX_Controller {
 
     function delete($table,$id){
         $sql = "delete from `$table` where id = '$id'";
-        if(process($sql)) datalog("Deletion of Record $id on $t");;
+        if(process($sql)){
+            
+            datalog("Deletion of Record $id on $t");
+
+            swalify("Delete Successful",'success');
+
+        } 
     }
 
 

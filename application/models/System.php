@@ -94,4 +94,26 @@ class System extends CI_Model {
  
     
     }
+
+
+    public function qList()
+    {
+
+        $users = array_map(function($data){ 
+
+        $name = rx($data->first_name." ".$data->last_name);
+        
+        $groups = array_map(function($g){
+            
+            return '('.rx($g->name).')';
+
+        }, $this->ion_auth->get_users_groups($data->id)->result());
+        
+            return (Object)["id"=>$data->id, "names"=>$name." ".implode(" ",$groups)];
+
+        },$this->ion_auth->users()->result());
+
+        return $users;
+    
+    }
 }

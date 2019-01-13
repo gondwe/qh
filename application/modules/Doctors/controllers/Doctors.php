@@ -1,6 +1,6 @@
 <?php 
 
-class Doctor extends MX_Controller {
+class Doctors extends MX_Controller {
 
 
     public function __construct()
@@ -13,10 +13,19 @@ class Doctor extends MX_Controller {
     }
 
 
-    public function products($action='dashboard')
+    public function queue($pid)
     {
-    
+        if(isset($_POST['pid'])) {
 
+            $this->db->insert('queues',$_POST);
+
+            swal("patient queued successfully", 'success');
+
+        }
+    
+        $data['info'] = $this->Patient->info($pid);
+
+        serve('patient/queue',$data);
 
     }
 	
@@ -43,10 +52,24 @@ class Doctor extends MX_Controller {
     {
 
         $data['info'] = is_null($param)? [] : $this->Patient->info($param);
+
+        $data['rx'] = is_null($param)? [] : $this->Patient->rx($param);
     
         $location = is_null($param)? "search" : "prescription";
 
         serve('patient/'.$location, $data) ;
+    
+    }
+
+
+    public function referal($param=null)
+    {
+    
+        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
+    
+        $location = is_null($param)? "search" : "referal";
+
+        serve('patient/'.$location, $data) ;     
     
     }
 

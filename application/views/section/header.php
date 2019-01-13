@@ -53,7 +53,7 @@
           </ul> -->
         </li>
         <li class="treeview">
-          <a href="<?=base_url('patient/admission')?>">
+          <a href="<?=base_url('patients/admission')?>">
             <i class="fa fa-files-o"></i>
             <span>Admission</span>
             <span class="pull-right-container">
@@ -61,8 +61,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('patient/admission/list')?>"><i class="fa fa-circle-o"></i> Admission List</a></li>
-            <li><a href="<?=base_url('patient/discharged')?>"><i class="fa fa-circle-o"></i> Discharged</a></li>
+            <li><a href="<?=base_url('patients/admission/list')?>"><i class="fa fa-circle-o"></i> Admission</a></li>
+            <li><a href="<?=base_url('patients/discharged')?>"><i class="fa fa-circle-o"></i> Discharged</a></li>
             <!-- <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li> -->
             <!-- <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> -->
           </ul>
@@ -112,9 +112,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('doctor/diagnosis')?>"><i class="fa fa-circle-o"></i> Diagnosis</a></li>
-            <li><a href="<?=base_url('doctor/prescription')?>"><i class="fa fa-circle-o"></i> Prescription</a></li>
-            <li><a href="<?=base_url('doctor/referal')?>"><i class="fa fa-circle-o"></i> Referal</a></li>
+            <li><a href="<?=base_url('doctors/diagnosis')?>"><i class="fa fa-circle-o"></i> Diagnosis</a></li>
+            <li><a href="<?=base_url('doctors/prescription')?>"><i class="fa fa-circle-o"></i> Prescription</a></li>
+            <li><a href="<?=base_url('doctors/referal')?>"><i class="fa fa-circle-o"></i> Referal</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -158,6 +158,7 @@
           <ul class="treeview-menu">
             <li><a href="<?=base_url('facility/rooms')?>"><i class="fa fa-circle-o"></i> Rooms</a></li>
             <li><a href="<?=base_url('facility/beds')?>"><i class="fa fa-circle-o"></i> Beds</a></li>
+            <li><a href="<?=base_url('facility/setup')?>"><i class="fa fa-circle-o"></i> Room Setup</a></li>
             <!-- <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li> -->
             <!-- <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
             <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
@@ -175,29 +176,29 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-circle-o"></i> Invoices</a></li>
+            <li><a href="<?=base_url('billing/invoices')?>"><i class="fa fa-circle-o"></i> Invoices</a></li>
             <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Cashier
+              <a href="<?=base_url('cashier/dashboard')?>"><i class="fa fa-circle-o"></i> Cashier
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> POS</a></li>
+                <li><a href="<?=base_url('cashier/pos')?>"><i class="fa fa-circle-o"></i> POS</a></li>
                 <li class="treeview">
-                  <a href="#"><i class="fa fa-circle-o"></i> Receipts
+                  <a href="<?=base_url('billing/receipts')?>"><i class="fa fa-circle-o"></i> Receipts
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
                   </a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Reprint</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Void</a></li>
+                    <li><a href="<?=base_url('receipts/reprint')?>"><i class="fa fa-circle-o"></i> Reprint</a></li>
+                    <li><a href="<?=base_url('receipts/void')?>"><i class="fa fa-circle-o"></i> Void</a></li>
                   </ul>
                 </li>
               </ul>
             </li>
-            <li><a href="#"><i class="fa fa-circle-o"></i> Patient Account</a></li>
+            <li><a href="<?=base_url('patients/account')?>"><i class="fa fa-circle-o"></i> Patient Account</a></li>
           </ul>
         </li>
         <li>

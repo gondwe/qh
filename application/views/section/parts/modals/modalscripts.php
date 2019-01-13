@@ -21,7 +21,9 @@ $('#newModal').on('show.bs.modal', function (event) {
     var modal = $(this)
       modal.find('#yes').click(function(){
           $("#row" + id ).hide();
-          $.post("<?=base_url('crud/ajaxDel/')?>" + table.toLowerCase() + '/' + id);
+          $.post("<?=base_url('crud/ajaxDel/')?>" + table.toLowerCase() + '/' + id,function(){
+              swal('Success','Delete Successful','info');
+          });
       });
     });
   
@@ -32,8 +34,9 @@ $('#newModal').on('show.bs.modal', function (event) {
     var title = button.data('title') // Extract info from data-* attributes
     var modal = $(this)
     modal.find('.modal-title').text('Edit ' + title)
+      
       $.get("<?=base_url('crud/ajaxEdit/')?>" + title.toLowerCase() + '/' + id, function(dat){
           modal.find('.modal-body').html(dat)
       })
-  })
+    })
 </script>

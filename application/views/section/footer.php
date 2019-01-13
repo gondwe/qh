@@ -1,6 +1,24 @@
 </div>
   <!-- /.content-wrapper -->
 
+<?php 
+
+if(isset($_SESSION['swal'])){
+  // pf($_SESSION['swal']);
+  echo "
+  <script>
+    $(document).ready(function(){
+      swal('".$_SESSION['swal'][1]."', '".$_SESSION['swal'][0]."', '".$_SESSION['swal'][1]."' );
+
+    })
+  </script>
+  ";
+  unset($_SESSION['swal']);
+}
+
+
+?>
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -27,6 +45,7 @@
 <!-- /* load the select boxes dynamic stylo */ -->
 <?php $this->load->view('section/parts/select2'); ?>
 
+
 <?php $this->load->view('section/parts/modals/modalscripts') ?>
 
 <!-- Bootstrap 3.3.7 -->
@@ -40,9 +59,23 @@
 <!-- AdminLTE for demo purposes -->
 <script src="<?=base_url('assets/dist/js/demo.js')?>"></script>
 
+<script src="<?=base_url('assets/js/sweetalert.min.js')?>"></script>
+
 <script>
 
   function pf(i){console.log(i);}
+
+  const swallow=function(url , data, msg){
+        $.post("<?=base_url('" + url + "')?>", {data}, function(){
+            
+            swal(msg, msg + ' successful' ,'success');
+            
+        }).catch(function(a,b,c){
+        
+            swal(c, msg + ' not saved',b);
+            
+        })
+  }
 
   $(document).ready(function () {
     $('.sidebar-menu').tree()

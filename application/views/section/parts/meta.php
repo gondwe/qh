@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="<?=base_url('assets/dist/css/AdminLTE.min.css')?>">
 
   <link rel="stylesheet" href="<?=base_url('assets/dist/css/helpers.css')?>">
+  
+  <link rel="stylesheet" href="<?=base_url('assets/css/sweetalert.css')?>">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="<?=base_url('assets/dist/css/skins/_all-skins.min.css')?>">
