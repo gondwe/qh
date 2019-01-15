@@ -7,6 +7,7 @@ $datalist = [
     "room_Names",
     "rooms",
     "patient_categories",
+    "appointments",
 ];
 
 

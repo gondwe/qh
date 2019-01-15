@@ -207,7 +207,7 @@ function publicProps($obj){
 }
 
 
-function dashCard($title,$url,$count='-',$icon='user',$bg='aqua'){
+function dashCard($title,$url,$count='-',$icon='user',$bg='aqua', $more="More Info",$moreicon='arrow-circle-right'){
   ?>
   <div class="col-lg-3 col-xs-6">
     <div class="small-box bg-<?=$bg?>">
@@ -218,7 +218,7 @@ function dashCard($title,$url,$count='-',$icon='user',$bg='aqua'){
         <div class="icon">
             <i class="fa fa-<?=$icon?>"></i>
         </div>
-        <a href="<?=base_url($url)?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+        <a href="<?=base_url($url)?>" class="small-box-footer"><?=$more?> <i class="fa fa-<?=$moreicon?>"></i></a>
     </div>
 </div>
   <?php

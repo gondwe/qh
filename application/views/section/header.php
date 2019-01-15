@@ -84,8 +84,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('booking/consultation')?>"><i class="fa fa-circle-o"></i> Consultation</a></li>
-            <li><a href="<?=base_url('booking/theatre')?>"><i class="fa fa-circle-o"></i> Theatre</a></li>
+            <li><a href="<?=base_url('doctors/consultation')?>"><i class="fa fa-circle-o"></i> Consultation</a></li>
+            <li><a href="<?=base_url('doctors/theatre')?>"><i class="fa fa-circle-o"></i> Theatre</a></li>
             <!-- <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li> -->
           </ul>

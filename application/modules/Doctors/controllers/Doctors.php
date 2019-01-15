@@ -40,20 +40,28 @@ class Doctors extends MX_Controller {
     public function diagnosis($param=null)
     {
 
-        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
+        $this->fetchPatient($param, "diagnosis");
     
-        $location = is_null($param)? "search" : "diagnosis";
+    }
 
-        serve('patient/'.$location, $data) ;
+
+    public function appointments($section=null, $pid = null)
+    {
+    
+        $section = $section ?? "dashboard";
+
+        $data['info'] = is_null($pid) ? [] : $this->Patient->info($pid);
+
+        serve('appoitnments/'.$section, $data);
     
     }
 
     public function prescription($param=null)
     {
 
-        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
-
         $data['rx'] = is_null($param)? [] : $this->Patient->rx($param);
+        
+        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
     
         $location = is_null($param)? "search" : "prescription";
 
@@ -65,14 +73,42 @@ class Doctors extends MX_Controller {
     public function referal($param=null)
     {
     
-        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
-    
-        $location = is_null($param)? "search" : "referal";
-
-        serve('patient/'.$location, $data) ;     
+        $this->fetchPatient($param, "referal");
     
     }
 
+    public function consultation($param=null)
+    {
+    
+       if(is_null($param)) { $this->fetchPatient($param, "consultation"); }else{
+
+           $this->appointments('consultation', $param);
+       }
+    
+    }
+
+    public function theatre($param=null)
+    {
+    
+        if(is_null($param)) { $this->fetchPatient($param, "consultation"); }else{
+
+            $this->appointments('theatre', $param);
+        }
+    
+    }
+
+
+
+    public function fetchPatient($param, $view)
+    {
+    
+        $data['info'] = is_null($param)? [] : $this->Patient->info($param);
+    
+        $location = is_null($param)? "search" : $view;
+
+        serve('patient/'.$location, $data);     
+    
+    }
 
 
 
