@@ -6,7 +6,19 @@ class Home extends MX_Controller {
 	public function index()
 	{
 		
-		serve('dashboard');
+		/* lets do the counting */
+		$data['count'] = (Object) [
+			
+			'admission' => $this->db->count_all('patients'),
+
+			'labtest' => $this->db->count_all('labtests'),
+
+			'appointments' => $this->db->where('apdate >= curdate()')->count_all('appointments'),
+
+			'pharmacy' => $this->db->count_all('products'),
+		];
+
+		serve('dashboard',$data);
 
 	}
 

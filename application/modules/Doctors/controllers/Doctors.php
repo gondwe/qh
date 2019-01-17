@@ -52,7 +52,7 @@ class Doctors extends MX_Controller {
 
         $data['info'] = is_null($pid) ? [] : $this->Patient->info($pid);
 
-        serve('appoitnments/'.$section, $data);
+        serve('appointments/'.$section, $data);
     
     }
 

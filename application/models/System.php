@@ -26,6 +26,67 @@ class System extends CI_Model {
     }
 
 
+    public function vdata($param)
+    {
+    
+        $where = [];
+
+        $field = array_shift($param);
+
+        $chunks = array_chunk($param,2);
+
+        foreach($chunks as $ch){
+
+            if(count($ch) == 2){ 
+
+                $where[$ch[0]] = $ch[1];
+            }
+        }
+
+        
+        return  $this->db
+                        ->where($where)
+                        
+                        ->select('id, ucase('.$field.') b')
+                        
+                        ->get('vdata')
+                        
+                        ->result_array();
+    
+    }
+
+    public function cTable($param)
+    {
+    
+        $where = [];
+
+        $table = array_shift($param);
+
+        $field = array_shift($param);
+
+        $chunks = array_chunk($param,2);
+
+        foreach($chunks as $ch){
+
+            if(count($ch) == 2){ 
+
+                $where[$ch[0]] = $ch[1];
+            }
+        }
+
+        
+        return  $this->db
+                        ->where($where)
+                        
+                        ->select('id, '.$field)
+                        
+                        ->get($table)
+                        
+                        ->result_array();
+    
+    }
+
+
     public function tabloPrinter()
     {
     

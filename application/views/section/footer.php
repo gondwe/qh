@@ -65,20 +65,23 @@ if(isset($_SESSION['swal'])){
 
   function pf(i){console.log(i);}
 
+
+  function arrayDel(arr, val){ return arr.filter(function(ele){ return ele !== val }) }
+
   const swallow=function(url , data, msg){
         $.post("<?=base_url('" + url + "')?>", {data}, function(){
             
-            swal(msg, msg + ' successful' ,'success');
+            swal(msg, msg + ' Successful' ,'success');
             
         }).catch(function(a,b,c){
         
-            swal(c, msg + ' not saved',b);
+          pf(a);
+            swal(c, msg + ' Not Saved', 'error');
             
         })
   }
 
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
+  $(document).ready(function () { $('.sidebar-menu').tree() 
   })
 </script>
 </body>

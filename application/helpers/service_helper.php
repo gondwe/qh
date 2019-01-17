@@ -47,12 +47,12 @@ function openDataTables(){
     echo '<link rel="stylesheet" href="'.base_url('assets/css/dataTables.jqueryui.min.css').'">';
 }
 
-function closeDataTables($disp, $limit=25){
+function closeDataTables($disp, $limit=25, $tid){
     ?>
         <script src="<?=base_url('assets/js/jquery.dataTables.min.js')?>"></script>
         <script>
         var disp = "<?=$disp?>"
-        $(document).ready(function() { $("#example").DataTable({ 
+        $(document).ready(function() { $("#<?=$tid?>").DataTable({ 
             pageLength:<?=$limit?>,
             searching:disp == 0 ? false:true,
             paging:disp == 0 ? false:true,

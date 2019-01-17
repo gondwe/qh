@@ -14,9 +14,9 @@
 
 switch($this->uri->segment(2)){
 
-    case "theatre" : 
-        $this->load->view('appointments/upcoming/theatre');
-    break;
+    case "theatre" : $this->load->view('appointments/upcoming/theatre'); break;
+
+    case "consultation" : $this->load->view('appointments/upcoming/consultation'); break;
     
 }
 

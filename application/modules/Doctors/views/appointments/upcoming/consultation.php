@@ -1,7 +1,7 @@
-<h4>Upcoming Theater</h4>
+<h4>Upcoming Visits</h4>
 <?php 
 
-$consult = $this->db->query("select id from vdata where a = 'apcat' and b like '%heat%'")->row('id');
+$consult = $this->db->query("select id from vdata where a = 'apcat' and b like '%cons%'")->row('id');
 
 $p = new Tablo('appointments');
 $p->where("apcat ='$consult'");

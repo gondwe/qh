@@ -10,6 +10,7 @@ $(".printer").click(function(){
     if(div == ""){
         
         window.location = "<?=base_url('systems/customPrinter/')?>" + url + view;
+        
 
     }else{
         
@@ -17,7 +18,7 @@ $(".printer").click(function(){
 
         $.post("<?=base_url('systems/')?>" + url , { "data":table}).then(function(){
 
-            window.location = "<?=base_url('systems/out/')?>" + view;
+            window.open( "<?=base_url('systems/out/')?>" + view, "_blank");
 
         });
     }

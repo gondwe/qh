@@ -37,10 +37,10 @@ class Patients extends MX_Controller {
     }
 
 
-    public function admission($param=null)
+    public function admission($param="list")
     {
     
-        if($param == "list") serve('admission/list'); 
+        serve('admission/'.$param); 
     
     }
 

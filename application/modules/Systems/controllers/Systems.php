@@ -17,6 +17,10 @@ class Systems extends MX_Controller {
         /* deal with special cases */
         if($table == 'uid') { echo json_encode($this->System->qList()); return; }
 
+        if($table == 'vdata') { echo json_encode($this->System->vdata($where)); return; }
+
+        if($table == 'custom') { echo json_encode($this->System->cTable($where)); return; }
+
         /* general cases */
         $field = array_shift($where);
 

@@ -25,6 +25,7 @@ class Tablo extends fieldsets{
 	// public $print = TRUE;
 	public $newButton = FALSE;
 	public $sqlstring;
+	public $tableid = 'example';
 	public $values = [];
 	public $pictures = [];
 	public $aliases = [];
@@ -102,21 +103,21 @@ public function tabloprops()
 		
 		
 			
-		if( is_string( $this->sqlstring)){
-			$this->data = $this->get($this->sqlstring);
-		}
+		if( is_string( $this->sqlstring)){ $this->data = $this->get($this->sqlstring); }
+
+		if($this->limit <> 25 && $display_links == "0" ){ $this->data = $this->limit > 0 ? current(array_chunk($this->data,$this->limit,1)) : [];  }
 
 		$display_links = is_null($display_links)? (count($this->data)>15? 2 : 0) : $display_links;
 		// pf($display_links);
 		$this->tableLinks($display_links);
 
-		openDataTables();
+		if($this->tableid == 'example') openDataTables();
 		// pf($this->sqlstring);
 		if($this->printable) printButton('example','tabloPrinter','tablo');
 
 		if($this->newButton) $this->newButton('example','tabloPrinter','tablo');
 		
-		echo'<table id="example" data-name="{$this->table}" class="display striped" style="width:100%;">';
+		echo'<table id="'.$this->tableid.'" data-name="{$this->table}" class="display striped" style="width:100%;">';
 		
 		$this->tableThead();
 
@@ -155,16 +156,10 @@ public function tabloprops()
 		echo "</tbody>";
 		echo "</table>";
 		
-		echo '
-		
-		</div>
-            </div>
-        </div>
-    </div>
-	</div>
-	</div>';
+		echo '<div class="clearfix"></div>';
 
-	closeDataTables($display_links, $this->limit);
+	// if($this->tableid == 'example') 
+	closeDataTables($display_links, $this->limit,$this->tableid );
 	dataTableModals();
 	}
 
