@@ -6,12 +6,12 @@
     $('form').submit(function(e){
         let data =$(this).serialize() + "&prodid="+prodid;
         // pf(data);
-        $.get("<?=base_url('products/rxStrip')?>", {data}, function(res){
+        $.get("<?=base_url('Products/rxStrip')?>", {data}, function(res){
             $('#rx').append(res);
             prodid += 1;
             
         }).then(
-            $.get("<?=base_url('products/jsondata/')?>" + $('[name="products"]').val(), function(res){
+            $.get("<?=base_url('Products/jsondata/')?>" + $('[name="products"]').val(), function(res){
             res = $.parseJSON(res);
             // pf(res);
             // pf(res["id"]);
@@ -28,9 +28,9 @@
     });
 
     $('[name="products"]').change(function(){
-        $.get("<?=base_url('products/detail/')?>"+this.value, function(res){
+        $.get("<?=base_url('Products/detail/')?>"+this.value, function(res){
             $('#pdetail').html(res);
-        }).then($.get("<?=base_url('products/price/')?>"+this.value, function(res){
+        }).then($.get("<?=base_url('Products/price/')?>"+this.value, function(res){
             $('#smallTotal').text('KES ' + parseInt(res) + '.00');
             // total.push(55);
             // pf(total);
@@ -92,7 +92,7 @@
             data.push(arr);
         })
 
-        swallow("patients/saveRx",data,'prescription');
+        swallow("Patients/saveRx",data,'prescription');
         
         totalize(true);
     })

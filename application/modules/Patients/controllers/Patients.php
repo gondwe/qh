@@ -23,7 +23,7 @@ class Patients extends MX_Controller {
     
         $action = "save".strtolower($param);
 
-        if($this->Patient->$action($id)) redirect('doctors/diagnosis/'.$id);
+        if($this->Patient->$action($id)) redirect('Doctors/diagnosis/'.$id);
         
     }
 

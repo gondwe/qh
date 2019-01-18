@@ -6,7 +6,7 @@ class Doctors extends MX_Controller {
     public function __construct()
     {
      
-        $this->load->model('pharmacy/Product');
+        $this->load->model('Pharmacy/Product');
 
         $this->load->model('Patient');
      

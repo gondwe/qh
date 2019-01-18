@@ -41,7 +41,7 @@ $('.subcat').change(function(){
 
     for(item in items ){
         a = $('#listItems').find('#'+items[item]);
-        $.post('lab/subcategoryTable/' + items[item], function(res){
+        $.post('Lab/subcategoryTable/' + items[item], function(res){
             if(a.length){
                 // $("#" + items[item]).remove();
             }else{

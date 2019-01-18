@@ -2,7 +2,7 @@
 
 <?php 
 
-$this->load->view('patients/strip',['info'=>$info]);
+$this->load->view('Patients/strip',['info'=>$info]);
 
 if(isset($_POST['d'])){
     process("update patients set discharged = 1 where id = '$info->id'");

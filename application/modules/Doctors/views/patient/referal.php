@@ -3,7 +3,7 @@
 <?php 
 
 
-$this->load->view('patients/strip', array('info'=>$info));
+$this->load->view('Patients/strip', array('info'=>$info));
 hr();
 
 echo '<div class="col border-right">';

@@ -18,7 +18,7 @@ dataTableModals();
 
 
 <div class="col-md-4 mt-1">
-        <form action="<?=base_url('patients/save/diagnosis/'.$info->id)?>" method="post">
+        <form action="<?=base_url('Patients/save/diagnosis/'.$info->id)?>" method="post">
                 <div class='form-group'>
                         <label>Symptoms</label>
                                 <select class='form-control select2' style='width:100%;' data-select='symptom' name='symptoms' id='names' >

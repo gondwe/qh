@@ -42,7 +42,7 @@
 
 <div class="clearfix"></div>
 <div id="form">
-<form action="<?=base_url('systems/posts')?>" method="post">
+<form action="<?=base_url('Systems/posts')?>" method="post">
 <?=printButton('','dPrinter/10/11','div')?>
 <!-- <hr> -->
 <div class="form-group">

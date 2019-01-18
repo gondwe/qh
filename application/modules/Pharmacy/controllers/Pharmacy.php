@@ -21,7 +21,7 @@ class Pharmacy extends MX_Controller {
             default: $data = []; break;
         }
 
-         serve('products/'.$action, $data);
+         serve('Products/'.$action, $data);
     }
 
 

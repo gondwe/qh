@@ -25,6 +25,6 @@ switch($this->uri->segment(2)){
 
 <script>
     $('[name=patients]').change(function(){
-        window.location = '<?=base_url("doctors/{$section}/")?>' + this.value;
+        window.location = '<?=base_url("Doctors/{$section}/")?>' + this.value;
     })
 </script>

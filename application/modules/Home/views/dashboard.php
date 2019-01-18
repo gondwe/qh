@@ -3,13 +3,13 @@
 
 <?php 
 
-    dashCard('Appointments','doctors/appointments',$count->appointments,'cog','green');
+    dashCard('Appointments','Doctors/appointments',$count->appointments,'cog','green');
 
-    dashCard('Admissions','patients/admission',$count->admission,'user','blue');
+    dashCard('Admissions','Patients/admission',$count->admission,'user','blue');
 
-    dashCard('Pharmacy','pharmacy/products',$count->pharmacy,'medkit','teal');
+    dashCard('Pharmacy','Pharmacy/products',$count->pharmacy,'medkit','teal');
 
-    dashCard('Laboratory','lab/tests',$count->labtest,'funnel','red');
+    dashCard('Laboratory','Lab/tests',$count->labtest,'funnel','red');
 
 ?>
 

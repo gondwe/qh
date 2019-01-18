@@ -67,7 +67,7 @@
 <script>
 $("[name='vdata']").change(function(){
 
-    $.post('lab/subcategories/'+this.value ).then(
+    $.post('Lab/subcategories/'+this.value ).then(
         function(res){
             elem = "";
             data = $.parseJSON(res);
@@ -98,7 +98,7 @@ function subcat(e,x){
     if(e.checked){
     
         if(items.indexOf(this.value) === -1) items.push(this.value);
-        $.post('lab/subcategoryTable/' + e.value, function(res){
+        $.post('Lab/subcategoryTable/' + e.value, function(res){
             $("#listItems").append(res);
         })
 
@@ -126,7 +126,7 @@ $('#savebtn').click(function(){
 
     pf(patient);
 
-    swallow("lab/saveTests/" + patient, {ids}, 'Lab Tests');
+    swallow("Lab/saveTests/" + patient, {ids}, 'Lab Tests');
 
     $(this).addClass('hide');
 })

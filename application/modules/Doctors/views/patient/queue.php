@@ -2,13 +2,13 @@
 
 <?php 
 
-$this->load->view('patients/strip',['info'=>$info]);
+$this->load->view('Patients/strip',['info'=>$info]);
 
 
 
 ?>
 <hr>
-<form action="<?=base_url('doctors/queue/'.$info->id)?>" method="post">
+<form action="<?=base_url('Doctors/queue/'.$info->id)?>" method="post">
 
 <div class='form-group'>
     <label>SELECT USER/ SECTION</label>

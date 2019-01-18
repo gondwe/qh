@@ -2,7 +2,7 @@
 
 <?php 
 
-$this->load->view('patients/strip', array('info'=>$info));
+$this->load->view('Patients/strip', array('info'=>$info));
 
 ?>
 <div class="clearfix mt-3">

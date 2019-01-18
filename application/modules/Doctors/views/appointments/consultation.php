@@ -18,7 +18,7 @@ $p->ucase('pid');
 
 if(isset($info->id)){
 
-    $this->load->view('patients/strip',['info',$info]);
+    $this->load->view('Patients/strip',['info',$info]);
     
     echo '<div class="mb-2 clearfix"></div>';
     $p->hidden('pid',$info->id);
@@ -34,10 +34,10 @@ if(isset($info->id)){
     $total = $this->db->where('apcat', $consult)->count_all('appointments');
     
     echo '<div class="mb-2">';
-    dashCard('Upcoming Consultations','doctors/consultation',$total,'bell','green','Queue Appointment','plus-circle');
-    echo '<a  class="btn btn-sm btn-success pull-right" href="'.base_url('doctors/consultation').'" role="button">QUEUE NEW APPOINTMENT</a>';
+    dashCard('Upcoming Consultations','Doctors/consultation',$total,'bell','green','Queue Appointment','plus-circle');
+    echo '<a  class="btn btn-sm btn-success pull-right" href="'.base_url('Doctors/consultation').'" role="button">QUEUE NEW APPOINTMENT</a>';
     echo '</div>';
-    $p->button('<span class="btn btn-sm btn-danger">RESCHEDULE</span>','doctors/appointments/reschedule');
+    $p->button('<span class="btn btn-sm btn-danger">RESCHEDULE</span>','Doctors/appointments/reschedule');
     $p->table(0);
 
 

@@ -53,7 +53,7 @@
           </ul> -->
         </li>
         <li class="treeview">
-          <a href="<?=base_url('patients/admission')?>">
+          <a href="<?=base_url('Patients/admission')?>">
             <i class="fa fa-files-o"></i>
             <span>Admission</span>
             <span class="pull-right-container">
@@ -61,8 +61,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('patients/admission/list')?>"><i class="fa fa-circle-o"></i> Admission</a></li>
-            <li><a href="<?=base_url('patients/discharged')?>"><i class="fa fa-circle-o"></i> Discharged</a></li>
+            <li><a href="<?=base_url('Patients/admission/list')?>"><i class="fa fa-circle-o"></i> Admission</a></li>
+            <li><a href="<?=base_url('Patients/discharged')?>"><i class="fa fa-circle-o"></i> Discharged</a></li>
             <!-- <li><a href="../layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li> -->
             <!-- <li><a href="../layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li> -->
           </ul>
@@ -84,8 +84,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('doctors/consultation')?>"><i class="fa fa-circle-o"></i> Consultation</a></li>
-            <li><a href="<?=base_url('doctors/theatre')?>"><i class="fa fa-circle-o"></i> Theatre</a></li>
+            <li><a href="<?=base_url('Doctors/consultation')?>"><i class="fa fa-circle-o"></i> Consultation</a></li>
+            <li><a href="<?=base_url('Doctors/theatre')?>"><i class="fa fa-circle-o"></i> Theatre</a></li>
             <!-- <li><a href="../charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
             <li><a href="../charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li> -->
           </ul>
@@ -99,8 +99,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('pharmacy/products')?>"><i class="fa fa-circle-o"></i> Products</a></li>
-            <li><a href="<?=base_url('pharmacy/products/reorderlist')?>"><i class="fa fa-circle-o"></i> ReOrder List</a></li>
+            <li><a href="<?=base_url('Pharmacy/products')?>"><i class="fa fa-circle-o"></i> Products</a></li>
+            <li><a href="<?=base_url('Pharmacy/Products/reorderlist')?>"><i class="fa fa-circle-o"></i> ReOrder List</a></li>
             
           </ul>
         </li>
@@ -112,9 +112,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('doctors/diagnosis')?>"><i class="fa fa-circle-o"></i> Diagnosis</a></li>
-            <li><a href="<?=base_url('doctors/prescription')?>"><i class="fa fa-circle-o"></i> Prescription</a></li>
-            <li><a href="<?=base_url('doctors/referal')?>"><i class="fa fa-circle-o"></i> Referal</a></li>
+            <li><a href="<?=base_url('Doctors/diagnosis')?>"><i class="fa fa-circle-o"></i> Diagnosis</a></li>
+            <li><a href="<?=base_url('Doctors/prescription')?>"><i class="fa fa-circle-o"></i> Prescription</a></li>
+            <li><a href="<?=base_url('Doctors/referal')?>"><i class="fa fa-circle-o"></i> Referal</a></li>
           </ul>
         </li>
         <li class="treeview">
@@ -125,8 +125,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('lab/tests')?>"><i class="fa fa-circle-o"></i> Tests</a></li>
-            <li><a href="<?=base_url('lab/results')?>"><i class="fa fa-circle-o"></i> Results</a></li>
+            <li><a href="<?=base_url('Lab/tests')?>"><i class="fa fa-circle-o"></i> Tests</a></li>
+            <li><a href="<?=base_url('Lab/results')?>"><i class="fa fa-circle-o"></i> Results</a></li>
           </ul>
         </li>
         <!-- <li>
@@ -156,9 +156,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?=base_url('facility/rooms')?>"><i class="fa fa-circle-o"></i> Rooms</a></li>
-            <li><a href="<?=base_url('facility/beds')?>"><i class="fa fa-circle-o"></i> Beds</a></li>
-            <li><a href="<?=base_url('facility/setup')?>"><i class="fa fa-circle-o"></i> Room Setup</a></li>
+            <li><a href="<?=base_url('Facility/rooms')?>"><i class="fa fa-circle-o"></i> Rooms</a></li>
+            <li><a href="<?=base_url('Facility/beds')?>"><i class="fa fa-circle-o"></i> Beds</a></li>
+            <li><a href="<?=base_url('Facility/setup')?>"><i class="fa fa-circle-o"></i> Room Setup</a></li>
             <!-- <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li> -->
             <!-- <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
             <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
@@ -198,7 +198,7 @@
                 </li>
               </ul>
             </li>
-            <li><a href="<?=base_url('patients/account')?>"><i class="fa fa-circle-o"></i> Patient Account</a></li>
+            <li><a href="<?=base_url('Patients/account')?>"><i class="fa fa-circle-o"></i> Patient Account</a></li>
           </ul>
         </li>
         <li>

@@ -9,16 +9,16 @@ $(".printer").click(function(){
     
     if(div == ""){
         
-        window.location = "<?=base_url('systems/customPrinter/')?>" + url + view;
+        window.location = "<?=base_url('Systems/customPrinter/')?>" + url + view;
         
 
     }else{
         
         let table = $("#" + div )[0].outerHTML;
 
-        $.post("<?=base_url('systems/')?>" + url , { "data":table}).then(function(){
+        $.post("<?=base_url('Systems/')?>" + url , { "data":table}).then(function(){
 
-            window.open( "<?=base_url('systems/out/')?>" + view, "_blank");
+            window.open( "<?=base_url('Systems/out/')?>" + view, "_blank");
 
         });
     }

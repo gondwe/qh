@@ -10,7 +10,7 @@ $d->ucase('category');
 $d->where('discharged = 1');
 // $d->newButton();
 $d->button('<i class="fa fa-dollar text-red"></i> INVOICE ','billing/invoice');
-// $d->button('<i class="fa fa-warning text-red"></i> Discharge','patients/discharge');
+// $d->button('<i class="fa fa-warning text-red"></i> Discharge','Patients/discharge');
 $d->limit(10);
 $d->delete = false;
 $d->edit = false;
